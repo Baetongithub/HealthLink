@@ -1,0 +1,93 @@
+plugins {
+    id 'com.android.application'
+    id 'org.jetbrains.kotlin.android'
+    id 'com.google.gms.google-services'
+}
+
+android {
+    namespace 'kg.healthlink.myapplication'
+    compileSdk 33
+
+    defaultConfig {
+        applicationId "kg.healthlink.myapplication"
+        minSdk 23
+        targetSdk 33
+        versionCode 1
+        versionName "1.0"
+
+        buildConfigField "String", "BASE_URL", "\"https://newsapi.org/v2/\""
+        buildConfigField "String", "API_KEY", "\"c1f70c79f2ce409f860f496cbc5c3777\""
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+    buildFeatures {
+        viewBinding true
+    }
+}
+
+dependencies {
+
+    implementation 'androidx.core:core-ktx:1.10.0'
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'com.google.android.material:material:1.8.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+
+    //Lifecycle
+    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.6.1'
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.1'
+
+    //navigation
+    implementation 'androidx.navigation:navigation-fragment-ktx:2.5.3'
+    implementation 'androidx.navigation:navigation-ui-ktx:2.5.3'
+    implementation "androidx.fragment:fragment-ktx:1.6.0-alpha09"
+
+    //glide
+    implementation 'com.github.bumptech.glide:glide:4.14.2'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.14.2'
+
+    //coil
+    implementation("io.coil-kt:coil:2.3.0")
+
+    //firebase-auth
+    implementation 'com.google.firebase:firebase-auth-ktx:21.2.0'
+
+    //firebase-fire store
+    implementation 'com.google.firebase:firebase-firestore-ktx:24.4.5'
+
+    //firebase-storage
+    implementation 'com.google.firebase:firebase-storage-ktx:20.1.0'
+
+    // Retrofit
+    implementation "com.squareup.retrofit2:retrofit:2.9.0"
+    implementation "com.squareup.retrofit2:converter-gson:2.9.0"
+    implementation "com.squareup.okhttp3:logging-interceptor:5.0.0-alpha.2"
+
+    // KoinDI
+    implementation "io.insert-koin:koin-android:2.2.2"
+    implementation "io.insert-koin:koin-androidx-scope:2.2.2"
+    implementation "io.insert-koin:koin-androidx-viewmodel:2.2.2"
+    implementation "io.insert-koin:koin-androidx-fragment:2.2.2"
+
+    // Coroutines
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4'
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.1"
+
+    //test
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+}

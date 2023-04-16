@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/bottom_sheet_container"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
+
+    <ImageView
+        android:id="@+id/image_bottom_sheet"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="-15dp"
+        android:src="@drawable/ic_round_horizontal_rule_24"
+        tools:ignore="ContentDescription" />
+
+    <RatingBar
+        android:id="@+id/rating_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="20dp"
+        android:progressTint="#FFC107" />
+
+    <EditText
+        android:id="@+id/et_leave_review"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/rating_bar"
+        android:layout_alignParentStart="true"
+        android:layout_toStartOf="@id/btn_share_review"
+        android:hint="Оставьте отзыв"
+        android:inputType="textCapSentences" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_share_review"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@id/et_leave_review"
+        android:layout_alignBottom="@id/et_leave_review"
+        android:layout_alignParentEnd="true"
+        android:backgroundTint="#FFC107"
+        android:text="Опубликовать"
+        android:textAllCaps="false"
+        android:textColor="@color/black"
+        app:cornerRadius="40dp" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="vertical"
+        android:layout_below="@id/et_leave_review"
+        tools:listitem="@layout/item_reviews" />
+
+</RelativeLayout>

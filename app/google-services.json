@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "516820559113",
+    "project_id": "health-link-test",
+    "storage_bucket": "health-link-test.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:516820559113:android:8f9462fbb18d087a3d5fd8",
+        "android_client_info": {
+          "package_name": "kg.healthlink.myapplication"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "516820559113-eiluljmp8c8e6qtrultm33eafsiqib8b.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCD_PgAD4QEL-pt_aTw-DPG3uwwWC7alsk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "516820559113-eiluljmp8c8e6qtrultm33eafsiqib8b.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.coaches.detailed_view.DetailedCoachFragment">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize">
+
+        <ImageView
+            android:id="@+id/image_back"
+            android:layout_width="35dp"
+            android:layout_height="40dp"
+            android:layout_gravity="start"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:src="@drawable/ic_back70" />
+
+        <TextView
+            android:id="@+id/tv_toolbar_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:text="@string/about_fit_room"
+            android:textColor="@color/black"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
+    </androidx.appcompat.widget.Toolbar>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/toolbar">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/image_main_fit_room"
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                android:layout_marginBottom="10dp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/ic_add_administrator100"
+                tools:ignore="ContentDescription" />
+
+            <TextView
+                android:id="@+id/tv_fit_room_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/image_main_fit_room"
+                android:layout_marginStart="10dp"
+                android:text="@string/gym_name"
+                android:textColor="@color/black"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tv_fit_room_rating"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_fit_room_name"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="5dp"
+                android:drawablePadding="7dp"
+                android:text="5.0"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                app:drawableStartCompat="@drawable/ic_star_filled25"
+                tools:ignore="HardcodedText" />
+
+            <TextView
+                android:id="@+id/tv_fit_room_type"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_fit_room_name"
+                android:layout_marginStart="10dp"
+                android:layout_alignTop="@id/tv_fit_room_rating"
+                android:layout_alignBottom="@id/tv_fit_room_rating"
+                android:layout_toEndOf="@id/tv_fit_room_rating"
+                android:text="@string/trainer"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/tv_fit_room_location"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_fit_room_rating"
+                android:layout_marginStart="12dp"
+                android:drawablePadding="10dp"
+                android:text="Бишкек"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                app:drawableStartCompat="@drawable/ic_visit20"
+                tools:ignore="HardcodedText" />
+
+            <TextView
+                android:id="@+id/tv_fit_room_description"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_fit_room_location"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="15dp"
+                android:text="@string/desc"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tv_fit_room_desc_content"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_fit_room_description"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="5dp"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                tools:text="SuppressLint SetJavaScriptEnabled override fun setupUI() {  val newsUrl = arguments?.getSerializable(Constants.SEND_NEWS_URL)
+        vb.webViewPMain.loadUrl(newsUrl.toString())" />
+
+            <RelativeLayout
+                android:id="@+id/rl_ratings"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_fit_room_desc_content"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginTop="15dp"
+                android:background="@drawable/back_ratings"
+                android:padding="8dp">
+
+                <TextView
+                    android:id="@+id/tv_rating"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toStartOf="@id/view_for_centralize"
+                    android:text="5.0"
+                    android:textColor="@color/black"
+                    android:textSize="40sp"
+                    android:textStyle="bold"
+                    tools:ignore="HardcodedText" />
+
+                <View
+                    android:id="@+id/view_for_centralize"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_centerHorizontal="true" />
+
+                <RatingBar
+                    android:id="@+id/tv_fit_room_main_rating_bar"
+                    style="?attr/ratingBarStyleSmall"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@id/tv_rating"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_toEndOf="@id/tv_rating"
+                    android:progressTint="@android:color/holo_orange_light"
+                    android:rating="5" />
+
+                <TextView
+                    android:id="@+id/tv_fit_room_review_count"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tv_fit_room_main_rating_bar"
+                    android:layout_marginStart="10dp"
+                    android:layout_toEndOf="@id/tv_rating"
+                    android:text="2 оценки"
+                    android:textColor="@color/black"
+                    tools:ignore="HardcodedText" />
+
+
+                <TextView
+                    android:id="@+id/tv_leave_review"
+                    android:layout_width="wrap_content"
+                    android:paddingVertical="10dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_height="wrap_content"
+                    android:paddingHorizontal="20dp"
+                    android:foreground="?attr/selectableItemBackgroundBorderless"
+                    android:layout_below="@id/tv_fit_room_review_count"
+                    android:layout_centerHorizontal="true"
+                    android:textSize="17sp"
+                    android:text="@string/leave_review" />
+
+                <View
+                    android:id="@+id/view_under_leave_review"
+                    android:layout_width="wrap_content"
+                    android:layout_height="1dp"
+                    android:layout_below="@id/tv_leave_review"
+                    android:layout_alignStart="@id/tv_leave_review"
+                    android:layout_alignEnd="@id/tv_leave_review"
+                    android:background="#9E000000" />
+            </RelativeLayout>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_call"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/rl_ratings"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="60dp"
+                android:backgroundTint="#F1F0F0"
+                android:text="@string/call"
+                android:textAllCaps="false"
+                android:textColor="@color/black"
+                app:cornerRadius="20dp"
+                app:icon="@drawable/ic_phone30"
+                app:iconTint="#4CAF50" />
+
+            <ImageView
+                android:id="@+id/fab_whatsapp"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_alignBottom="@id/btn_call"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="10dp"
+                android:src="@drawable/ic_whatsapp48"
+                tools:ignore="ContentDescription" />
+
+            <ImageView
+                android:id="@+id/fab_instagram"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_alignBottom="@id/btn_call"
+                android:layout_marginEnd="8dp"
+                android:layout_toStartOf="@id/fab_whatsapp"
+                android:src="@drawable/ic_instagram48"
+                tools:ignore="ContentDescription" />
+        </RelativeLayout>
+    </ScrollView>
+</RelativeLayout>

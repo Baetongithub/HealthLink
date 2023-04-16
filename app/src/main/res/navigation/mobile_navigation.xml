@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/navigation_coaches">
+
+    <fragment
+        android:id="@+id/navigation_fitness_rooms"
+        android:name="kg.healthlink.myapplication.ui.fit_rooms.FitRoomFragment"
+        android:label="@string/fitness_rooms">
+        <action
+            android:id="@+id/action_navigation_fitness_rooms_to_detailedFitRoomsFragment"
+            app:destination="@id/detailedFitRoomsFragment"
+            app:enterAnim="@anim/slide_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/slide_out" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_news"
+        android:name="kg.healthlink.myapplication.ui.news.NewsFragment"
+        android:label="@string/news_about_sport">
+        <action
+            android:id="@+id/action_navigation_news_to_detailedNewsFragment"
+            app:destination="@id/detailedNewsFragment"
+            app:enterAnim="@anim/slide_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/slide_out" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_profile"
+        android:name="kg.healthlink.myapplication.ui.profile.ProfileFragment"
+        android:label="@string/profile" >
+        <action
+            android:id="@+id/action_navigation_profile_to_editProfileFragment"
+            app:destination="@id/editProfileFragment"
+            app:enterAnim="@anim/slide_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/slide_out"/>
+    </fragment>
+    <fragment
+        android:id="@+id/navigation_coaches"
+        android:name="kg.healthlink.myapplication.ui.coaches.CoachesFragment"
+        android:label="@string/coaches">
+        <action
+            android:id="@+id/action_navigation_coaches_to_detailedCoachFragment"
+            app:destination="@id/detailedCoachFragment"
+            app:enterAnim="@anim/slide_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/slide_out" />
+    </fragment>
+    <fragment
+        android:id="@+id/authFragment"
+        android:name="kg.healthlink.myapplication.ui.auth.AuthFragment"
+        android:label="@string/sing_in">
+        <action
+            android:id="@+id/action_authFragment_to_signUpFragment"
+            app:destination="@id/signUpFragment"
+            app:enterAnim="@anim/slide_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/slide_out" />
+        <action
+            android:id="@+id/action_authFragment_to_navigation_coaches"
+            app:destination="@id/navigation_coaches"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/slide_out" />
+    </fragment>
+    <fragment
+        android:id="@+id/signUpFragment"
+        android:name="kg.healthlink.myapplication.ui.sign_up.SignUpFragment"
+        android:label="@string/sign_up">
+        <action
+            android:id="@+id/action_signUpFragment_to_navigation_coaches"
+            app:destination="@id/navigation_coaches"
+            app:enterAnim="@anim/slide_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/slide_out" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailedNewsFragment"
+        android:name="kg.healthlink.myapplication.ui.news.detailed_news.DetailedNewsFragment"
+        android:label="fragment_detailed_news" />
+    <fragment
+        android:id="@+id/detailedFitRoomsFragment"
+        android:name="kg.healthlink.myapplication.ui.fit_rooms.detailed_view.DetailedFitRoomsFragment"
+        android:label="fragment_detailed_fit_rooms" />
+    <fragment
+        android:id="@+id/detailedCoachFragment"
+        android:name="kg.healthlink.myapplication.ui.coaches.detailed_view.DetailedCoachFragment"
+        android:label="fragment_detailet_view_coach" />
+    <fragment
+        android:id="@+id/addCoachesFragment"
+        android:name="kg.healthlink.myapplication.ui.add_content.AddCoachesFragment"
+        android:label="fragment_add_coaches" />
+    <fragment
+        android:id="@+id/addFitRoomFragment"
+        android:name="kg.healthlink.myapplication.ui.add_content.AddFitRoomFragment"
+        android:label="fragment_add_fit_room" />
+    <fragment
+        android:id="@+id/editProfileFragment"
+        android:name="kg.healthlink.myapplication.ui.profile.EditProfileFragment"
+        android:label="fragment_edit_profile"
+        tools:layout="@layout/fragment_edit_profile" />
+</navigation>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/navigation_coaches"
+        android:icon="@drawable/ic_personal_trainer50"
+        android:title="@string/coaches" />
+
+    <item
+        android:id="@+id/navigation_fitness_rooms"
+        android:icon="@drawable/ic_fitness50"
+        android:title="@string/fitness_rooms" />
+
+    <item
+        android:id="@+id/navigation_news"
+        android:icon="@drawable/ic_newspaper50"
+        android:title="@string/news" />
+
+    <item
+        android:id="@+id/navigation_profile"
+        android:icon="@drawable/ic_admin_settings_male50"
+        android:title="@string/profile" />
+
+</menu>
