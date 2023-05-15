@@ -74,7 +74,6 @@ class FitRoomsAdapter(
         fun bind(model: FitRoomsModel) {
             vb.imageMainNews.glide(model.urlPhoto)
             vb.tvNewsHeadline.text = model.name
-            vb.tvDescription.text = model.description
         }
     }
 

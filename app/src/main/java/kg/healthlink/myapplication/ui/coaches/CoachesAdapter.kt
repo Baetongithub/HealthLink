@@ -74,7 +74,6 @@ class CoachesAdapter(
         fun bind(model: CoachesModel) {
             vb.imageMainNews.glide(model.urlPhoto)
             vb.tvNewsHeadline.text = model.name
-            vb.tvDescription.text = model.description
         }
     }
 

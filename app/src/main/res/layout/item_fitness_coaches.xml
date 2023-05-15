@@ -24,28 +24,17 @@
         <TextView
             android:id="@+id/tv_news_headline"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_above="@id/tv_description"
+            android:layout_height="50dp"
             android:background="@drawable/back_fit_coaches"
             android:maxHeight="100dp"
             android:paddingStart="5dp"
             android:paddingEnd="5dp"
             android:text="@string/about_trainer"
             android:textColor="@color/black"
+            android:gravity="center_vertical"
+            android:layout_alignParentBottom="true"
             android:textSize="22sp"
             android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/tv_description"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:background="@color/white"
-            android:paddingStart="5dp"
-            android:paddingEnd="5dp"
-            android:text="@string/description"
-            android:textColor="@color/black"
-            android:textSize="20sp" />
 
     </RelativeLayout>
 </androidx.cardview.widget.CardView>
