@@ -36,6 +36,7 @@ class DetailedFitRoomsFragment :
         vb.tvFitRoomName.text = fitRoomModel?.name
         vb.tvFitRoomDescContent.text = fitRoomModel?.description
         vb.tvFitRoomLocation.text = fitRoomModel?.address
+        vb.tvCoachName.text = fitRoomModel?.coaches
         vb.imageMainFitRoom.glide(fitRoomModel?.urlPhoto)
 
         vb.imageBack.setOnClickListener { findNavController().navigateUp() }

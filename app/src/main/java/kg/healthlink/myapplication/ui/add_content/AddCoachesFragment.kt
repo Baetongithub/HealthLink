@@ -51,19 +51,25 @@ class AddCoachesFragment :
                                     coachMap[FirebaseConstants.NAME] = vb.etName.text.toString()
                                     coachMap[FirebaseConstants.DESCRIPTION] =
                                         vb.etDesc.text.toString()
+                                    coachMap[FirebaseConstants.WHICH_FIT_ROOM] =
+                                        vb.etWhichFitRoom.text.toString()
                                     coachMap[FirebaseConstants.URL_TO_PHOTO] = uri.toString()
 
-                                    db.collection(FirebaseConstants.COACH_CONTENT)
-                                        .add(coachMap)
-                                        .addOnSuccessListener {
-                                            vb.progressBar.visibility = View.GONE
-                                            toast("fit room added")
-                                            vb.etName.setText("")
-                                            vb.etDesc.setText("")
-                                        }.addOnFailureListener {
-                                            toast("fit room didn't added")
-                                            vb.progressBar.visibility = View.GONE
-                                        }
+                                    if (vb.etWhichFitRoom.text.isNotEmpty())
+                                        db.collection(FirebaseConstants.COACH_CONTENT)
+                                            .add(coachMap)
+                                            .addOnSuccessListener {
+                                                vb.progressBar.visibility = View.GONE
+                                                toast("new coach added")
+                                                vb.etName.setText("")
+                                                vb.etDesc.setText("")
+                                                vb.etWhichFitRoom.setText("")
+                                                vb.imageContent.setImageDrawable(null)
+                                            }.addOnFailureListener {
+                                                toast("new coach didn't added")
+                                                vb.progressBar.visibility = View.GONE
+                                            }
+                                    else toast("Добавьте свой фитнес зал")
                                 }
                             }
                         }

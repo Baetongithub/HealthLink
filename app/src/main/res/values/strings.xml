@@ -7,7 +7,7 @@
     <string name="news">Новости</string>
     <string name="profile">Профиль</string>
     <string name="coaches_fragment">Coaches Fragment</string>
-    <string name="coaches">Тренеры</string>
+    <string name="coaches">Тренеры:</string>
     <string name="fitness_rooms">Фитнес залы</string>
     <string name="news_about_sport">Новости про спорт</string>
     <string name="change">Изменить</string>
@@ -50,4 +50,8 @@
     <string name="publish">publish</string>
     <string name="add_coaches">Add coaches</string>
     <string name="who_added">Who added</string>
+    <string name="which_fit_room">Добавьте свой фитнес зал</string>
+    <string name="clubs">Клубы:</string>
+    <string name="add_coaches_in_fit_room">Добавьте штатных тренеров</string>
+    <string name="add_coach">Добавить ещё</string>
 </resources>

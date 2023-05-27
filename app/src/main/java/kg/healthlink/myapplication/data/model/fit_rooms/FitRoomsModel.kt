@@ -5,5 +5,6 @@ data class FitRoomsModel(
     val name: String = "",
     val description: String = "",
     val address: String = "",
+    val coaches: String = "",
     val urlPhoto: String = ""
 ) : java.io.Serializable

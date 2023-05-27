@@ -123,14 +123,38 @@
                 android:textColor="@color/black"
                 android:autoLink="all"
                 android:textSize="18sp"
-                tools:text="SuppressLint SetJavaScriptEnabled override fun setupUI() {  val newsUrl = arguments?.getSerializable(Constants.SEND_NEWS_URL)
+                tools:text="SuppressLint SetJavaScriptEnabled override fun setupUI()
+                {  val newsUrl = arguments?.getSerializable(Constants.SEND_NEWS_URL)
         vb.webViewPMain.loadUrl(newsUrl.toString())" />
+
+            <TextView
+                android:id="@+id/tv_fit_rooms"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_fit_room_desc_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="5dp"
+                android:text="@string/coaches"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tv_coach_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_fit_rooms"
+                android:layout_marginStart="10dp"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                tools:text="Андрей Петров" />
 
             <RelativeLayout
                 android:id="@+id/rl_ratings"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/tv_fit_room_desc_content"
+                android:layout_below="@id/tv_coach_name"
                 android:layout_marginHorizontal="10dp"
                 android:layout_marginTop="15dp"
                 android:background="@drawable/back_ratings"

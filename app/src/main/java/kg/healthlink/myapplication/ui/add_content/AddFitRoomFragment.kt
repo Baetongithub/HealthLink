@@ -20,6 +20,12 @@ class AddFitRoomFragment :
     override fun initView() {
         super.initView()
         vb.imageBack.setOnClickListener { findNavController().navigateUp() }
+
+        vb.btnAddMoreCoach.setOnClickListener {
+            vb.etCoaches2.visibility = View.VISIBLE
+            vb.etCoaches3.visibility = View.VISIBLE
+            vb.btnAddMoreCoach.visibility = View.GONE
+        }
     }
 
     override fun initData() {
@@ -27,7 +33,7 @@ class AddFitRoomFragment :
         publishContent()
     }
 
-    private fun publishContent() {
+    private fun publishContent() = with(vb) {
         //select from gallery
         var uri: Uri
         val imageFromGallery =
@@ -36,8 +42,8 @@ class AddFitRoomFragment :
                     uri = galleryUri
 
                     //upload to backend
-                    vb.btnPublish.setOnClickListener {
-                        vb.progressBar.visibility = View.VISIBLE
+                    btnPublish.setOnClickListener {
+                        progressBar.visibility = View.VISIBLE
                         val storage = FirebaseStorage.getInstance()
                         val reference = storage.reference
                             .child(FirebaseConstants.STORAGE_FIT_ROOM_IMAGE)
@@ -47,23 +53,36 @@ class AddFitRoomFragment :
                                 reference.downloadUrl.addOnSuccessListener { uri ->
 
                                     val fitRoomMap: MutableMap<String, Any> = HashMap()
-                                    fitRoomMap[FirebaseConstants.NAME] = vb.etName.text.toString()
-                                    fitRoomMap[FirebaseConstants.DESCRIPTION] = vb.etDesc.text.toString()
-                                    fitRoomMap[FirebaseConstants.ADDRESS] = vb.etAddress.text.toString()
+                                    fitRoomMap[FirebaseConstants.NAME] = etName.text.toString()
+                                    fitRoomMap[FirebaseConstants.DESCRIPTION] =
+                                        etDesc.text.toString()
+                                    fitRoomMap[FirebaseConstants.ADDRESS] =
+                                        etAddress.text.toString()
+                                    fitRoomMap[FirebaseConstants.COACHES] =
+                                        etCoaches.text.toString() +
+                                                "\n${etCoaches2.text}\n${etCoaches3.text}"
                                     fitRoomMap[FirebaseConstants.URL_TO_PHOTO] = uri.toString()
 
-                                    db.collection(FirebaseConstants.FIT_ROOM_CONTENT)
-                                        .add(fitRoomMap)
-                                        .addOnSuccessListener {
-                                            vb.progressBar.visibility = View.GONE
-                                            vb.etName.setText("")
-                                            vb.etDesc.setText("")
-                                            vb.etAddress.setText("")
-                                            toast("content added")
-                                        }.addOnFailureListener {
-                                            vb.progressBar.visibility = View.GONE
-                                            toast("content didn't load")
-                                        }
+                                    if (etCoaches.text.isNotEmpty())
+                                        db.collection(FirebaseConstants.FIT_ROOM_CONTENT)
+                                            .add(fitRoomMap)
+                                            .addOnSuccessListener {
+                                                progressBar.visibility = View.GONE
+                                                etName.setText("")
+                                                etDesc.setText("")
+                                                etDesc.setText("")
+                                                etDesc.setText("")
+                                                etAddress.setText("")
+                                                etCoaches.setText("")
+                                                etCoaches2.setText("")
+                                                etCoaches3.setText("")
+                                                imageContent.setImageDrawable(null)
+                                                toast("new fit room added")
+                                            }.addOnFailureListener {
+                                                progressBar.visibility = View.GONE
+                                                toast("new coach didn't added")
+                                            }
+                                    else toast("Добавьте штатных тренеров")
                                 }
                             }
                         }

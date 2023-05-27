@@ -54,7 +54,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:hint="@string/name"
+        android:hint="@string/description"
+        android:inputType="textCapSentences" />
+
+    <EditText
+        android:id="@+id/et_whichFitRoom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:hint="@string/which_fit_room"
         android:inputType="textCapSentences" />
 
     <ProgressBar

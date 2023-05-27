@@ -51,7 +51,7 @@
                 tools:ignore="ContentDescription" />
 
             <TextView
-                android:id="@+id/tv_fit_room_name"
+                android:id="@+id/tv_coach_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/image_main_fit_room"
@@ -65,7 +65,7 @@
                 android:id="@+id/tv_fit_room_rating"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/tv_fit_room_name"
+                android:layout_below="@id/tv_coach_name"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="5dp"
                 android:drawablePadding="7dp"
@@ -79,10 +79,10 @@
                 android:id="@+id/tv_fit_room_type"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/tv_fit_room_name"
-                android:layout_marginStart="10dp"
+                android:layout_below="@id/tv_coach_name"
                 android:layout_alignTop="@id/tv_fit_room_rating"
                 android:layout_alignBottom="@id/tv_fit_room_rating"
+                android:layout_marginStart="10dp"
                 android:layout_toEndOf="@id/tv_fit_room_rating"
                 android:text="@string/trainer"
                 android:textSize="18sp" />
@@ -121,14 +121,39 @@
                 android:layout_marginTop="5dp"
                 android:textColor="@color/black"
                 android:textSize="18sp"
-                tools:text="SuppressLint SetJavaScriptEnabled override fun setupUI() {  val newsUrl = arguments?.getSerializable(Constants.SEND_NEWS_URL)
-        vb.webViewPMain.loadUrl(newsUrl.toString())" />
+                tools:text="SuppressLint SetJavaScriptEnabled
+                 override fun setupUI() {  val newsUrl =
+                 arguments?.getSerializable(Constants.SEND_NEWS_URL)
+                 vb.webViewPMain.loadUrl(newsUrl.toString())" />
+
+            <TextView
+                android:id="@+id/tv_fit_rooms"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_fit_room_desc_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="5dp"
+                android:text="@string/clubs"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tv_fit_room_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_fit_rooms"
+                android:layout_marginStart="10dp"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                tools:text="Dasmia Fitness" />
 
             <RelativeLayout
                 android:id="@+id/rl_ratings"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/tv_fit_room_desc_content"
+                android:layout_below="@id/tv_fit_room_name"
                 android:layout_marginHorizontal="10dp"
                 android:layout_marginTop="15dp"
                 android:background="@drawable/back_ratings"
@@ -178,15 +203,15 @@
                 <TextView
                     android:id="@+id/tv_leave_review"
                     android:layout_width="wrap_content"
-                    android:paddingVertical="10dp"
-                    android:layout_marginTop="15dp"
                     android:layout_height="wrap_content"
-                    android:paddingHorizontal="20dp"
-                    android:foreground="?attr/selectableItemBackgroundBorderless"
                     android:layout_below="@id/tv_fit_room_review_count"
                     android:layout_centerHorizontal="true"
-                    android:textSize="17sp"
-                    android:text="@string/leave_review" />
+                    android:layout_marginTop="15dp"
+                    android:foreground="?attr/selectableItemBackgroundBorderless"
+                    android:paddingHorizontal="20dp"
+                    android:paddingVertical="10dp"
+                    android:text="@string/leave_review"
+                    android:textSize="17sp" />
 
                 <View
                     android:id="@+id/view_under_leave_review"
