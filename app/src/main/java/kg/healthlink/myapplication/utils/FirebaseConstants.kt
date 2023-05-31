@@ -1,6 +1,7 @@
 package kg.healthlink.myapplication.utils
 
 object FirebaseConstants {
+    const val REVIEW_DOC="reviewDoc"
     const val COACHES="coaches"
     const val WHICH_FIT_ROOM="whichFitRoom"
     const val REVIEW_STORE = "reviews"

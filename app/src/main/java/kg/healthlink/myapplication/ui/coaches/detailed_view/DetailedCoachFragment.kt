@@ -6,6 +6,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.DocumentChange
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import kg.healthlink.myapplication.R
@@ -14,9 +15,11 @@ import kg.healthlink.myapplication.data.model.reviews.ReviewsModel
 import kg.healthlink.myapplication.databinding.BottomSheetLeaveReviewBinding
 import kg.healthlink.myapplication.databinding.FragmentDetailetViewCoachBinding
 import kg.healthlink.myapplication.extensions.glide
+import kg.healthlink.myapplication.extensions.toast
 import kg.healthlink.myapplication.ui.base.BaseFragment
 import kg.healthlink.myapplication.ui.fit_rooms.detailed_view.ReviewsAdapter
 import kg.healthlink.myapplication.utils.Constants
+import kg.healthlink.myapplication.utils.FirebaseConstants
 import kg.healthlink.myapplication.utils.KeyboardHelper
 import java.io.Serializable
 import kotlin.random.Random
@@ -48,10 +51,11 @@ class DetailedCoachFragment :
 
     override fun initData() {
         super.initData()
-        addREviews()
     }
 
     private fun openBottomSheetLeaveReviews() {
+        val coachesModel = arguments?.customGetSerializable<CoachesModel>(Constants.COACHES_BUNDLE)
+
         val bottomSheetDialog = BottomSheetDialog(requireContext(), R.style.BottomSheetDialogTheme)
         val vbDialog: BottomSheetLeaveReviewBinding = BottomSheetLeaveReviewBinding.inflate(
             layoutInflater
@@ -69,47 +73,54 @@ class DetailedCoachFragment :
                 listOfReview.add(
                     ReviewsModel(
                         id,
-                        email,
+                        vbDialog.ratingBar.rating.toDouble(),
                         vbDialog.etLeaveReview.text.toString(),
-                        vbDialog.ratingBar.rating
+                        email
                     )
                 )
-//
-//                val reviewMap: MutableMap<String, Any> = HashMap()
-//                reviewMap[FirebaseConstants.REVIEW_CONTENT] = vbDialog.etLeaveReview.text.toString()
-//                reviewMap[FirebaseConstants.REVIEW_OWNER] = auth.currentUser?.email.toString()
-//                reviewMap[FirebaseConstants.RATING] = vbDialog.ratingBar.rating.toString()
-//
-//                db.collection(FirebaseConstants.COACH_CONTENT)
-//                    .document("reviewDoc")
-//                    .collection("review")
-//                    .add(reviewMap)
-//                    .addOnSuccessListener {
-//                        toast("success")
-//                    }
-//                    .addOnFailureListener {
-//                        toast("failure")
-//                    }
+
+                val reviewMap: MutableMap<String, Any> = HashMap()
+                reviewMap[FirebaseConstants.REVIEW_CONTENT] = vbDialog.etLeaveReview.text.toString()
+                reviewMap[FirebaseConstants.REVIEW_OWNER] = auth.currentUser?.email.toString()
+                reviewMap[FirebaseConstants.RATING] = vbDialog.ratingBar.rating
+
+                db.collection(FirebaseConstants.COACH_CONTENT)
+                    .document(FirebaseConstants.REVIEW_DOC)
+                    .collection(coachesModel?.name.toString())
+                    .add(reviewMap)
+                    .addOnSuccessListener {
+                        toast("Опубликовано")
+                    }
+                    .addOnFailureListener {
+                        toast("Не удалось опубликовать")
+                    }
             }
             vbDialog.etLeaveReview.setText("")
             vbDialog.ratingBar.rating = 0f
             KeyboardHelper.hideKeyboard(activity)
             reviewsAdapter.notifyItemInserted(listOfReview.size - 1)
         }
+
+        db.collection(FirebaseConstants.COACH_CONTENT)
+            .document(FirebaseConstants.REVIEW_DOC)
+            .collection(coachesModel?.name.toString())
+            .addSnapshotListener { value, error ->
+                if (error != null) {
+                    toast("Ошибка в $error")
+                    return@addSnapshotListener
+                }
+
+                listOfReview.clear()
+                for (dc: DocumentChange in value?.documentChanges!!) {
+                    if (dc.type == DocumentChange.Type.ADDED) {
+                        listOfReview.add(dc.document.toObject(ReviewsModel::class.java))
+                    }
+                }
+            }
         reviewsAdapter.submitList(listOfReview)
 
         bottomSheetDialog.setContentView(vbDialog.root)
         bottomSheetDialog.show()
-    }
-
-    private fun addREviews() {
-        listOfReview.add(ReviewsModel(1, "example@gmail.com", "Хорошо", 4f))
-        listOfReview.add(ReviewsModel(2, "example@gmail.com", "Все отлично", 5f))
-        listOfReview.add(ReviewsModel(4, "example@gmail.com", "Все отлично", 5f))
-        listOfReview.add(ReviewsModel(7, "example@gmail.com", "Плохо", 2f))
-        listOfReview.add(ReviewsModel(6, "example@gmail.com", "Все отлично", 5f))
-        listOfReview.add(ReviewsModel(8, "example@gmail.com", "Очень плохо", 1f))
-        listOfReview.add(ReviewsModel(9, "example@gmail.com", "Пойдёт", 3f))
     }
 
     private fun onReviewClick(reviewsModel: ReviewsModel) {

@@ -63,26 +63,24 @@ class AddFitRoomFragment :
                                                 "\n${etCoaches2.text}\n${etCoaches3.text}"
                                     fitRoomMap[FirebaseConstants.URL_TO_PHOTO] = uri.toString()
 
-                                    if (etCoaches.text.isNotEmpty())
-                                        db.collection(FirebaseConstants.FIT_ROOM_CONTENT)
-                                            .add(fitRoomMap)
-                                            .addOnSuccessListener {
-                                                progressBar.visibility = View.GONE
-                                                etName.setText("")
-                                                etDesc.setText("")
-                                                etDesc.setText("")
-                                                etDesc.setText("")
-                                                etAddress.setText("")
-                                                etCoaches.setText("")
-                                                etCoaches2.setText("")
-                                                etCoaches3.setText("")
-                                                imageContent.setImageDrawable(null)
-                                                toast("new fit room added")
-                                            }.addOnFailureListener {
-                                                progressBar.visibility = View.GONE
-                                                toast("new coach didn't added")
-                                            }
-                                    else toast("Добавьте штатных тренеров")
+                                    db.collection(FirebaseConstants.FIT_ROOM_CONTENT)
+                                        .add(fitRoomMap)
+                                        .addOnSuccessListener {
+                                            progressBar.visibility = View.GONE
+                                            etName.setText("")
+                                            etDesc.setText("")
+                                            etDesc.setText("")
+                                            etDesc.setText("")
+                                            etAddress.setText("")
+                                            etCoaches.setText("")
+                                            etCoaches2.setText("")
+                                            etCoaches3.setText("")
+                                            imageContent.setImageDrawable(null)
+                                            toast("new fit room added")
+                                        }.addOnFailureListener {
+                                            progressBar.visibility = View.GONE
+                                            toast("new coach didn't added")
+                                        }
                                 }
                             }
                         }

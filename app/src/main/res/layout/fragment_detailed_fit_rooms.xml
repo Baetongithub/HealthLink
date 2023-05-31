@@ -121,7 +121,7 @@
                 android:layout_marginTop="5dp"
                 android:textColorLink="#5E73E3"
                 android:textColor="@color/black"
-                android:autoLink="all"
+                android:autoLink="phone|email|web"
                 android:textSize="18sp"
                 tools:text="SuppressLint SetJavaScriptEnabled override fun setupUI()
                 {  val newsUrl = arguments?.getSerializable(Constants.SEND_NEWS_URL)

@@ -27,7 +27,7 @@
     <string name="your_city">Ваш город</string>
     <string name="create_password">Придумайте пароль</string>
     <string name="you_havent_signed_yet">Проверьте логин или пароль.</string>
-    <string name="search">Поиск...</string>
+    <string name="search">Поиск</string>
     <string name="description">Описание</string>
     <string name="about_trainer">About Trainer</string>
     <string name="about_fit_room">About Fit Room</string>
@@ -41,7 +41,7 @@
     <string name="tv_music_in_room">Музыка в зале</string>
     <string name="call">Позвонить</string>
     <string name="schedule">Расписание</string>
-    <string name="leave_review">Оставить отзыв...</string>
+    <string name="leave_review">Оставить отзыв</string>
     <string name="trainer">Личный тренер</string>
     <string name="write">Написать</string>
     <string name="name">Name</string>
@@ -54,4 +54,5 @@
     <string name="clubs">Клубы:</string>
     <string name="add_coaches_in_fit_room">Добавьте штатных тренеров</string>
     <string name="add_coach">Добавить ещё</string>
+    <string name="share">Опубликовать</string>
 </resources>

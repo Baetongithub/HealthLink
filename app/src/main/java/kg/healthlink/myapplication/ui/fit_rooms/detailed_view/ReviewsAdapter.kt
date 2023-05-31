@@ -32,7 +32,7 @@ class ReviewsAdapter(private val onItemClick: (ReviewsModel) -> Unit) :
 
         fun bind(model: ReviewsModel) {
             vb.tvReviewContent.text = model.review
-            vb.ratingBar.rating = model.rating
+            vb.ratingBar.rating = model.rating.toFloat()
             vb.tvReviewOwner.text = model.reviewOwner
         }
     }

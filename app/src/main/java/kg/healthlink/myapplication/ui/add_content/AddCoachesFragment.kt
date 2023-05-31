@@ -55,21 +55,19 @@ class AddCoachesFragment :
                                         vb.etWhichFitRoom.text.toString()
                                     coachMap[FirebaseConstants.URL_TO_PHOTO] = uri.toString()
 
-                                    if (vb.etWhichFitRoom.text.isNotEmpty())
-                                        db.collection(FirebaseConstants.COACH_CONTENT)
-                                            .add(coachMap)
-                                            .addOnSuccessListener {
-                                                vb.progressBar.visibility = View.GONE
-                                                toast("new coach added")
-                                                vb.etName.setText("")
-                                                vb.etDesc.setText("")
-                                                vb.etWhichFitRoom.setText("")
-                                                vb.imageContent.setImageDrawable(null)
-                                            }.addOnFailureListener {
-                                                toast("new coach didn't added")
-                                                vb.progressBar.visibility = View.GONE
-                                            }
-                                    else toast("Добавьте свой фитнес зал")
+                                    db.collection(FirebaseConstants.COACH_CONTENT)
+                                        .add(coachMap)
+                                        .addOnSuccessListener {
+                                            vb.progressBar.visibility = View.GONE
+                                            toast("new coach added")
+                                            vb.etName.setText("")
+                                            vb.etDesc.setText("")
+                                            vb.etWhichFitRoom.setText("")
+                                            vb.imageContent.setImageDrawable(null)
+                                        }.addOnFailureListener {
+                                            toast("new coach didn't added")
+                                            vb.progressBar.visibility = View.GONE
+                                        }
                                 }
                             }
                         }
