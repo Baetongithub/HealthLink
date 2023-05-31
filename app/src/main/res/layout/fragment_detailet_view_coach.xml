@@ -186,25 +186,24 @@
                     android:layout_marginTop="4dp"
                     android:layout_toEndOf="@id/tv_rating"
                     android:progressTint="@android:color/holo_orange_light"
-                    android:rating="5" />
+                    android:rating="4.5" />
 
                 <TextView
-                    android:id="@+id/tv_fit_room_review_count"
+                    android:id="@+id/tv_review_amount"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/tv_fit_room_main_rating_bar"
                     android:layout_marginStart="10dp"
                     android:layout_toEndOf="@id/tv_rating"
-                    android:text="2 оценки"
+                    android:text="0 оценки"
                     android:textColor="@color/black"
                     tools:ignore="HardcodedText" />
-
 
                 <TextView
                     android:id="@+id/tv_leave_review"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/tv_fit_room_review_count"
+                    android:layout_below="@id/tv_review_amount"
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="15dp"
                     android:foreground="?attr/selectableItemBackgroundBorderless"

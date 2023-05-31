@@ -52,6 +52,28 @@ class DetailedFitRoomsFragment :
 
     override fun initData() {
         super.initData()
+        val fitRoomModel =
+            arguments?.customGetSerializable<FitRoomsModel>(Constants.FIT_TRAINERS_BUNDLE)
+        var reviewAmount = 0
+
+        db.collection(FirebaseConstants.FIT_ROOM_CONTENT)
+            .document(FirebaseConstants.REVIEW_DOC)
+            .collection(fitRoomModel?.name.toString())
+            .addSnapshotListener { value, error ->
+                if (error != null) {
+                    toast("Ошибка в $error")
+                    return@addSnapshotListener
+                }
+
+                listOfReview.clear()
+                for (dc: DocumentChange in value?.documentChanges!!) {
+                    if (dc.type == DocumentChange.Type.ADDED) {
+                        listOfReview.add(dc.document.toObject(ReviewsModel::class.java))
+                        reviewAmount++
+                    }
+                }
+                vb.tvReviewAmount.text = String.format("$reviewAmount оценки")
+            }
     }
 
     private fun openBottomSheetLeaveReviews() {
@@ -67,7 +89,7 @@ class DetailedFitRoomsFragment :
             LinearLayoutManager(context, LinearLayoutManager.VERTICAL, true)
         vbDialog.recyclerView.adapter = reviewsAdapter
 
-        val id:Int = Random(100).nextInt()
+        val id: Int = Random(100).nextInt()
         vbDialog.btnShareReview.setOnClickListener {
             val email = auth.currentUser?.email
             if (email != null) {
@@ -82,7 +104,7 @@ class DetailedFitRoomsFragment :
 
                 val reviewMap: MutableMap<String, Any> = HashMap()
                 reviewMap[FirebaseConstants.REVIEW_CONTENT] = vbDialog.etLeaveReview.text.toString()
-                reviewMap[FirebaseConstants.REVIEW_OWNER] = auth.currentUser?.email.toString()
+                reviewMap[FirebaseConstants.REVIEW_OWNER] = email
                 reviewMap[FirebaseConstants.RATING] = vbDialog.ratingBar.rating
 
                 db.collection(FirebaseConstants.FIT_ROOM_CONTENT)
@@ -101,23 +123,6 @@ class DetailedFitRoomsFragment :
             KeyboardHelper.hideKeyboard(activity)
             reviewsAdapter.notifyItemInserted(listOfReview.size - 1)
         }
-
-        db.collection(FirebaseConstants.FIT_ROOM_CONTENT)
-            .document(FirebaseConstants.REVIEW_DOC)
-            .collection(fitRoomModel?.name.toString())
-            .addSnapshotListener { value, error ->
-                if (error != null) {
-                    toast("Ошибка в $error")
-                    return@addSnapshotListener
-                }
-
-                listOfReview.clear()
-                for (dc: DocumentChange in value?.documentChanges!!) {
-                    if (dc.type == DocumentChange.Type.ADDED) {
-                        listOfReview.add(dc.document.toObject(ReviewsModel::class.java))
-                    }
-                }
-            }
         reviewsAdapter.submitList(listOfReview)
 
         bottomSheetDialog.setContentView(vbDialog.root)

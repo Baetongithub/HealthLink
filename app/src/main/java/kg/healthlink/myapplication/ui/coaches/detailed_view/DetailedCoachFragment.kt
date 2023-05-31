@@ -51,6 +51,27 @@ class DetailedCoachFragment :
 
     override fun initData() {
         super.initData()
+        val coachesModel = arguments?.customGetSerializable<CoachesModel>(Constants.COACHES_BUNDLE)
+        var reviewAmount = 0
+
+        db.collection(FirebaseConstants.COACH_CONTENT)
+            .document(FirebaseConstants.REVIEW_DOC)
+            .collection(coachesModel?.name.toString())
+            .addSnapshotListener { value, error ->
+                if (error != null) {
+                    toast("Ошибка в $error")
+                    return@addSnapshotListener
+                }
+
+                listOfReview.clear()
+                for (dc: DocumentChange in value?.documentChanges!!) {
+                    if (dc.type == DocumentChange.Type.ADDED) {
+                        listOfReview.add(dc.document.toObject(ReviewsModel::class.java))
+                        reviewAmount++
+                    }
+                }
+                vb.tvReviewAmount.text = String.format("$reviewAmount оценки")
+            }
     }
 
     private fun openBottomSheetLeaveReviews() {
@@ -81,7 +102,7 @@ class DetailedCoachFragment :
 
                 val reviewMap: MutableMap<String, Any> = HashMap()
                 reviewMap[FirebaseConstants.REVIEW_CONTENT] = vbDialog.etLeaveReview.text.toString()
-                reviewMap[FirebaseConstants.REVIEW_OWNER] = auth.currentUser?.email.toString()
+                reviewMap[FirebaseConstants.REVIEW_OWNER] = email.toString()
                 reviewMap[FirebaseConstants.RATING] = vbDialog.ratingBar.rating
 
                 db.collection(FirebaseConstants.COACH_CONTENT)
@@ -89,7 +110,7 @@ class DetailedCoachFragment :
                     .collection(coachesModel?.name.toString())
                     .add(reviewMap)
                     .addOnSuccessListener {
-                        toast("Опубликовано")
+                        toast("Опубликован")
                     }
                     .addOnFailureListener {
                         toast("Не удалось опубликовать")
@@ -100,23 +121,6 @@ class DetailedCoachFragment :
             KeyboardHelper.hideKeyboard(activity)
             reviewsAdapter.notifyItemInserted(listOfReview.size - 1)
         }
-
-        db.collection(FirebaseConstants.COACH_CONTENT)
-            .document(FirebaseConstants.REVIEW_DOC)
-            .collection(coachesModel?.name.toString())
-            .addSnapshotListener { value, error ->
-                if (error != null) {
-                    toast("Ошибка в $error")
-                    return@addSnapshotListener
-                }
-
-                listOfReview.clear()
-                for (dc: DocumentChange in value?.documentChanges!!) {
-                    if (dc.type == DocumentChange.Type.ADDED) {
-                        listOfReview.add(dc.document.toObject(ReviewsModel::class.java))
-                    }
-                }
-            }
         reviewsAdapter.submitList(listOfReview)
 
         bottomSheetDialog.setContentView(vbDialog.root)
