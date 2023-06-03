@@ -8,6 +8,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.DocumentChange
 import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.firestore.ktx.toObject
 import com.google.firebase.ktx.Firebase
 import kg.healthlink.myapplication.R
 import kg.healthlink.myapplication.data.model.fit_rooms.FitRoomsModel
@@ -21,6 +22,7 @@ import kg.healthlink.myapplication.utils.Constants
 import kg.healthlink.myapplication.utils.FirebaseConstants
 import kg.healthlink.myapplication.utils.KeyboardHelper
 import java.io.Serializable
+import kotlin.math.roundToInt
 import kotlin.random.Random
 
 class DetailedFitRoomsFragment :
@@ -55,6 +57,8 @@ class DetailedFitRoomsFragment :
         val fitRoomModel =
             arguments?.customGetSerializable<FitRoomsModel>(Constants.FIT_TRAINERS_BUNDLE)
         var reviewAmount = 0
+        var ratingAmount = 0.0
+        var ratingAmountMean: Double
 
         db.collection(FirebaseConstants.FIT_ROOM_CONTENT)
             .document(FirebaseConstants.REVIEW_DOC)
@@ -69,10 +73,23 @@ class DetailedFitRoomsFragment :
                 for (dc: DocumentChange in value?.documentChanges!!) {
                     if (dc.type == DocumentChange.Type.ADDED) {
                         listOfReview.add(dc.document.toObject(ReviewsModel::class.java))
+                        val data = dc.document.toObject(ReviewsModel::class.java)
+                        ratingAmount += data.rating
                         reviewAmount++
                     }
                 }
                 vb.tvReviewAmount.text = String.format("$reviewAmount оценки")
+                ratingAmountMean = ratingAmount / reviewAmount
+                if (!ratingAmountMean.isNaN()) {
+                    vb.mainRatingBar.rating = ratingAmountMean.toFloat()
+                    vb.tvRating.text = ((ratingAmountMean * 100.0).roundToInt() / 100.0).toString()
+                    vb.tvFitRoomRating.text =
+                        ((ratingAmountMean * 100.0).roundToInt() / 100.0).toString()
+                } else {
+                    vb.mainRatingBar.rating = 0f
+                    vb.tvRating.text = "0.0"
+                    vb.tvFitRoomRating.text = "0.0"
+                }
             }
     }
 
@@ -130,7 +147,6 @@ class DetailedFitRoomsFragment :
     }
 
     private fun onReviewClick(reviewsModel: ReviewsModel) {
-
     }
 
     @Suppress("DEPRECATION")
